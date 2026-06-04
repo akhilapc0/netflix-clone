@@ -6,49 +6,50 @@ import bell_icon from '../../assets/bell_icon.svg'
 import profile_img from '../../assets/profile_img.png'
 import caret_icon from '../../assets/caret_icon.svg'
 import { logout } from '../../firebase'
+import { useNavigate } from 'react-router-dom'
+
 const Navbar = () => {
+  const navRef = useRef()
+  const navigate = useNavigate()
 
-  const navRef=useRef()
-
-  useEffect(()=>{
-    window.addEventListener('scroll',()=>{
-      if(window.scrollY >=80){
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 80) {
         navRef.current.classList.add('nav-dark')
-      }else{
+      } else {
         navRef.current.classList.remove('nav-dark')
       }
-    })
-  },[])
-
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <div ref={navRef} className='navbar'>
-     
-    <div className='navbar-left'>
-      <img src={logo} alt="" />
-      <ul>
-        <li>Home</li>
-         <li>TV Shows</li>
+      <div className='navbar-left'>
+        <img src={logo} alt="" onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
+        <ul>
+          <li onClick={() => navigate('/')}>Home</li>
+          <li>TV Shows</li>
           <li>Movies</li>
-           <li>New & Popular</li>
-            <li>My List</li>
-             <li>Browse by Languages</li>
-      </ul>
-    </div>
-    <div className='navbar-right'>
-      <img src={search_icon} alt="" className='icons' />
-      <p>Children</p>
-      <img src={bell_icon} alt="" className='icons' />
-      <div className="navbar-profile">
-         <img src={profile_img} alt="" className='profile' />
-         <img src={caret_icon} alt="" />
-         <div className='dropdown'>
-          <p onClick={()=>{logout()}}>Sign Out Of Netflix</p>
-         </div>
-         
+          <li>New & Popular</li>
+          <li onClick={() => navigate('/watchlist')}>My List</li>
+          <li>Browse by Languages</li>
+        </ul>
       </div>
-    </div>
-        
+      <div className='navbar-right'>
+        <img src={search_icon} alt="" className='icons' />
+        <p>Children</p>
+        <img src={bell_icon} alt="" className='icons' />
+        <div className="navbar-profile">
+          <img src={profile_img} alt="" className='profile' />
+          <img src={caret_icon} alt="" />
+          <div className='dropdown'>
+            <p onClick={() => navigate('/watchlist')}>My List</p>
+            <p onClick={() => logout()}>Sign Out Of Netflix</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

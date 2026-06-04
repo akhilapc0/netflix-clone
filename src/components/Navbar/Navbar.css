@@ -100,3 +100,13 @@
         gap:10px
     }
 }
+
+.navbar .dropdown p {
+    font-size: 13px;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.navbar .dropdown p:hover {
+    text-decoration: underline;
+}

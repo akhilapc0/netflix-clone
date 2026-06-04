@@ -58,3 +58,36 @@
         font-size: 10px;
     }
 }
+
+/* Watchlist button on card */
+.card-list .card .watchlist-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: 1px solid white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.card-list .card .watchlist-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Highlighted when already watchlisted */
+.card-list .card .watchlist-btn.watchlisted {
+  background: #e50914;
+  border-color: #e50914;
+  color: white;
+}
+
+.card-list .card .watchlist-btn.watchlisted:hover {
+  background: #b20610;
+  border-color: #b20610;
+}
